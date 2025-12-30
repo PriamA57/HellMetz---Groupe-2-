@@ -21,7 +21,11 @@ public class GroupeListServlet extends HttpServlet {
         List<Groupe> groupes = groupeDao.findAll();
         req.setAttribute("groupes", groupes);
 
-        // On délègue l’affichage à une JSP
-        req.getRequestDispatcher("/WEB-INF/backoffice/groupes.jsp").forward(req, resp);
+        // Pour le layout
+        req.setAttribute("pageTitle", "HellMetz - Groupes");
+        req.setAttribute("activeMenu", "groupes");  // pour surligner le menu
+        req.setAttribute("contentPage", "/WEB-INF/backoffice/groupes.jsp");
+
+        req.getRequestDispatcher("/WEB-INF/backoffice/layout.jsp").forward(req, resp);
     }
 }
