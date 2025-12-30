@@ -1,0 +1,206 @@
+:root {
+    --hm-bg: #020617;
+    --hm-bg-soft: #0b1120;
+    --hm-border: #1f2937;
+    --hm-text: #e5e7eb;
+    --hm-text-muted: #9ca3af;
+    --hm-accent: #f97316;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Outfit", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: radial-gradient(circle at top left, #111827 0, #020617 45%, #000 100%);
+    color: var(--hm-text);
+}
+
+a {
+    color: var(--hm-accent);
+}
+a:hover {
+    color: #fdba74;
+}
+
+.backoffice-wrapper {
+    min-height: 100vh;
+    display: flex;
+}
+
+/* Sidebar */
+.backoffice-sidebar {
+    width: 260px;
+    background: rgba(15, 23, 42, 0.98);
+    border-right: 1px solid var(--hm-border);
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+}
+
+.backoffice-logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.backoffice-subtitle {
+    font-size: 0.85rem;
+    color: var(--hm-text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.backoffice-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.backoffice-nav a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 0.6rem;
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--hm-text-muted);
+    text-decoration: none;
+}
+
+.backoffice-nav a:hover {
+    background: rgba(55, 65, 81, 0.4);
+    color: var(--hm-text);
+}
+
+.backoffice-nav a.active {
+    background: linear-gradient(90deg, #f97316, #ea580c);
+    color: #111827;
+    font-weight: 600;
+}
+
+.backoffice-nav a.disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.backoffice-user {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--hm-border);
+    font-size: 0.85rem;
+    color: var(--hm-text-muted);
+}
+
+.backoffice-user strong {
+    color: var(--hm-text);
+}
+
+/* Main content */
+.backoffice-main {
+    flex: 1;
+    padding: 1.8rem 2.2rem;
+}
+
+.backoffice-header {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--hm-border);
+    padding-bottom: 0.75rem;
+}
+
+.backoffice-header h1 {
+    margin: 0;
+    font-size: 1.6rem;
+    letter-spacing: 0.03em;
+}
+
+.backoffice-header .subtitle {
+    font-size: 0.9rem;
+    color: var(--hm-text-muted);
+}
+
+/* Card / tableau */
+.hm-card {
+    background: rgba(15, 23, 42, 0.96);
+    border-radius: 1rem;
+    border: 1px solid var(--hm-border);
+    padding: 1.2rem 1.4rem;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+}
+
+.hm-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.hm-card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.hm-tag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--hm-text-muted);
+}
+
+.hm-btn-primary {
+    border-radius: 999px;
+    padding: 0.35rem 0.9rem;
+    border: none;
+    font-size: 0.9rem;
+    background: linear-gradient(90deg, #f97316, #ea580c);
+    color: #111827;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+}
+.hm-btn-primary:hover {
+    filter: brightness(1.05);
+    color: #111827;
+}
+
+table.hm-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+table.hm-table thead {
+    background: rgba(31, 41, 55, 0.9);
+}
+
+table.hm-table th,
+table.hm-table td {
+    padding: 0.55rem 0.6rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(31, 41, 55, 0.8);
+}
+
+table.hm-table tbody tr:hover {
+    background: rgba(30, 64, 175, 0.25);
+}
+
+table.hm-table th:last-child,
+table.hm-table td:last-child {
+    text-align: right;
+}
+
+.hm-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.1rem 0.55rem;
+    border-radius: 999px;
+    background: rgba(55, 65, 81, 0.6);
+    font-size: 0.75rem;
+    color: var(--hm-text-muted);
+}
+
+.hm-link-site {
+    font-size: 0.8rem;
+}
