@@ -6,7 +6,7 @@
     <div class="backoffice-subtitle">Backoffice organisateur</div>
 
     <nav class="backoffice-nav">
-        <a href="${pageContext.request.contextPath}/backoffice/hello"
+        <a href="${pageContext.request.contextPath}/backoffice/dashboard"
            class="<c:if test='${activeMenu eq "dashboard"}'>active</c:if>">
             <span>🏠</span>
             <span>Tableau de bord</span>
