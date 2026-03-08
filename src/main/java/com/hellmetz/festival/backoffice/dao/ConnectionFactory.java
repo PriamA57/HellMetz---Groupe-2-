@@ -13,9 +13,11 @@ public class ConnectionFactory {
     private static final String MOT_DE_PASSE_BDD;
     private static final String DRIVER;
 
+    // 1. L'instance unique de la connexion
+    private static Connection connection = null;
+
     static {
         try {
-            // Recupération des paramètres de connexion à la base de données
             Properties proprietes = new Properties();
             proprietes.load(ConnectionFactory.class.getClassLoader().getResourceAsStream("db.properties"));
             URL_BDD          = proprietes.getProperty("db.url");
@@ -23,16 +25,28 @@ public class ConnectionFactory {
             MOT_DE_PASSE_BDD = proprietes.getProperty("db.password");
             DRIVER           = proprietes.getProperty("db.driver");
 
-            // Chargement du driver JDBC postgresql
             Class.forName(DRIVER);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("Driver PostgreSQL introuvable", e);
         } catch (IOException e) {
-            throw new RuntimeException("Impossible de charger le fichier db.properties",e);
+            throw new RuntimeException("Impossible de charger le fichier db.properties", e);
         }
     }
 
+    // 2. Constructeur privé pour empêcher toute instanciation externe
+    private ConnectionFactory() {
+    }
+
+    // 3. Méthode d'accès modifiée pour le Singleton
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL_BDD, UTILISATEUR_BDD, MOT_DE_PASSE_BDD);
+        // On vérifie si la connexion est nulle ou fermée avant de la (re)créer
+        if (connection == null || connection.isClosed()) {
+            synchronized (ConnectionFactory.class) { // Thread-safe
+                if (connection == null || connection.isClosed()) {
+                    connection = DriverManager.getConnection(URL_BDD, UTILISATEUR_BDD, MOT_DE_PASSE_BDD);
+                }
+            }
+        }
+        return connection;
     }
 }
