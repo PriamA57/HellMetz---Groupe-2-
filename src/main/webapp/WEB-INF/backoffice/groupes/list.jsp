@@ -7,7 +7,7 @@
             <div class="hm-tag">Gestion</div>
             <div class="hm-card-title">Groupes du HellMetz Festival</div>
         </div>
-        <a href="${pageContext.request.contextPath}/backoffice/groupe/edit" class="hm-btn-primary">
+        <a href="${pageContext.request.contextPath}/backoffice/groupes/edit" class="hm-btn-primary">
             <span>＋</span>
             <span>Nouveau groupe</span>
         </a>
@@ -54,12 +54,12 @@
                             </td>
                             <td>
                                 <a class="hm-link-site"
-                                   href="${pageContext.request.contextPath}/backoffice/groupe/edit?id=${g.id}">
+                                   href="${pageContext.request.contextPath}/backoffice/groupes/edit?id=${g.id}">
                                     ✏️ éditer
                                 </a>
                                 &nbsp;|&nbsp;
                                 <a class="hm-link-site"
-                                   href="${pageContext.request.contextPath}/backoffice/groupe/delete?id=${g.id}"
+                                   href="${pageContext.request.contextPath}/backoffice/groupes/delete?id=${g.id}"
                                    onclick="return confirm('Supprimer ce groupe ?');">
                                     🗑️ supprimer
                                 </a>

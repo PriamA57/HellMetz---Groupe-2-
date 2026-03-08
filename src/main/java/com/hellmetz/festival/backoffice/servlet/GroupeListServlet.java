@@ -24,7 +24,7 @@ public class GroupeListServlet extends HttpServlet {
         // Pour le layout
         req.setAttribute("pageTitle", "HellMetz - Groupes");
         req.setAttribute("activeMenu", "groupes");  // pour surligner le menu
-        req.setAttribute("contentPage", "/WEB-INF/backoffice/groupes.jsp");
+        req.setAttribute("contentPage", "/WEB-INF/backoffice/groupes/list.jsp");
 
         req.getRequestDispatcher("/WEB-INF/backoffice/layout.jsp").forward(req, resp);
     }

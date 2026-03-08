@@ -60,5 +60,34 @@ public class GroupeDao {
         return result;
     }
 
-    // On ajoutera ensuite : findById, insert, update, delete
+    /**
+     * Récupère un groupe spécifique par son identifiant.
+     */
+    public Groupe findById(int id) {
+        String sql = "SELECT * FROM groupe WHERE id_groupe = ?";
+        try (Connection cn = ConnectionFactory.getConnection();
+             PreparedStatement ps = cn.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    Groupe groupe = new Groupe(rs.getInt("id_groupe"), rs.getString("nom_groupe"),
+                            rs.getString("description"), rs.getBoolean("actif"),
+                            rs.getInt("id_concert"), rs.getInt("annee_creation"),
+                            rs.getString("ville_origine"), rs.getString("pays_origine"),
+                            rs.getString("url_logo"), rs.getString("site_web"),
+                            rs.getString("url_facebook"), rs.getString("url_instagram"),
+                            rs.getString("url_youtube"), rs.getString("url_spotify"),
+                            rs.getString("email_contact"), rs.getString("telephone_contact"),
+                            rs.getString("url_fiche_technique"));
+                    return groupe;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    // On ajoutera ensuite : insert, update, delete
 }
