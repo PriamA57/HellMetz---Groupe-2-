@@ -11,23 +11,46 @@ public class GroupeDao {
     public List<Groupe> findAll() {
         List<Groupe> result = new ArrayList<>();
 
-        String sql = "SELECT id_groupe, nom, style, pays, description, site_web, image_url FROM groupe ORDER BY nom";
+        String sql = "select id_groupe, nom_groupe, description, actif, id_concert, annee_creation, ville_origine, pays_origine, url_logo, site_web, url_facebook, url_instagram, url_youtube, url_spotify, email_contact, telephone_contact, url_fiche_technique from groupe ORDER BY nom_groupe";
 
         try (Connection cn = ConnectionFactory.getConnection();
              PreparedStatement ps = cn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                Groupe g = new Groupe();
-                g.setId(rs.getInt("id_groupe"));
-                g.setNom(rs.getString("nom"));
-                g.setStyle(rs.getString("style"));
-                g.setPays(rs.getString("pays"));
-                g.setDescription(rs.getString("description"));
-                g.setSiteWeb(rs.getString("site_web"));
-                g.setImageUrl(rs.getString("image_url"));
+                /*
+                    OPTION 1 - Utilisation du constructeur par défaut
+                    Utilisation des méthodes de accesseurs et mutateurs
+                 */
+                /*
+                    Groupe groupe = new Groupe();
+                    groupe.setId(rs.getInt("id_groupe"));
+                    groupe.setNom(rs.getString("nom_groupe"));
+                    groupe.setAnnee_creation(rs.getInt("annee_creation"));
+                    groupe.setPays_origine(rs.getString("pays_origine"));
+                    groupe.setDescription(rs.getString("description"));
+                    groupe.setSite_web(rs.getString("site_web"));
+                    groupe.setUrl_logo(rs.getString("url_logo"));
+                    ...
 
-                result.add(g);
+                    result.add(groupe);
+
+                 */
+
+                /*
+                    OPTION 2 - Utilisation du constructeur uniquement
+                 */
+                Groupe groupe = new Groupe(rs.getInt("id_groupe"), rs.getString("nom_groupe"),
+                        rs.getString("description"), rs.getBoolean("actif"),
+                        rs.getInt("id_concert"), rs.getInt("annee_creation"),
+                        rs.getString("ville_origine"), rs.getString("pays_origine"),
+                        rs.getString("url_logo"), rs.getString("site_web"),
+                        rs.getString("url_facebook"), rs.getString("url_instagram"),
+                        rs.getString("url_youtube"), rs.getString("url_spotify"),
+                        rs.getString("email_contact"), rs.getString("telephone_contact"),
+                        rs.getString("url_fiche_technique"));
+
+                result.add(groupe);
             }
 
         } catch (SQLException e) {
