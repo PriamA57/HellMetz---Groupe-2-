@@ -22,6 +22,7 @@
         <form action="${pageContext.request.contextPath}/backoffice/groupes/edit" method="post">
 
             <input type="hidden" name="id" value="${groupe.id}">
+            <input type="hidden" name="id_concert" value="${groupe.id_concert}">
 
             <div class="row mb-3">
                 <div class="col-md-6">
