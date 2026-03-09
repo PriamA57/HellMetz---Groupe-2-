@@ -89,5 +89,60 @@ public class GroupeDao {
         return null;
     }
 
-    // On ajoutera ensuite : insert, update, delete
+    /**
+     * Insère un nouveau groupe dans la base de données.
+     */
+    public void insert(Groupe groupe) {
+        String sql = "INSERT INTO groupe (nom_groupe, description, actif, id_concert, annee_creation, ville_origine, pays_origine, url_logo, site_web, url_facebook, url_instagram, url_youtube, url_spotify, email_contact, telephone_contact, url_fiche_technique) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection cn = ConnectionFactory.getConnection();
+             PreparedStatement ps = cn.prepareStatement(sql)) {
+
+            fillPreparedStatement(ps, groupe);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Met à jour les informations d'un groupe existant.
+     */
+    public void update(Groupe groupe) {
+        String sql = "UPDATE groupe SET nom_groupe=?, description=?, actif=?, id_concert=?, annee_creation=?, ville_origine=?, pays_origine=?, url_logo=?, site_web=?, url_facebook=?, url_instagram=?, url_youtube=?, url_spotify=?, email_contact=?, telephone_contact=?, url_fiche_technique=? WHERE id_groupe=?";
+
+        try (Connection cn = ConnectionFactory.getConnection();
+             PreparedStatement ps = cn.prepareStatement(sql)) {
+
+            fillPreparedStatement(ps, groupe);
+            ps.setInt(17, groupe.getId());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Méthode utilitaire pour remplir les paramètres d'un PreparedStatement.
+     */
+    private void fillPreparedStatement(PreparedStatement ps, Groupe groupe) throws SQLException {
+        ps.setString(1, groupe.getNom());
+        ps.setString(2, groupe.getDescription());
+        ps.setBoolean(3, groupe.getActif());
+        ps.setInt(4, groupe.getId_concert());
+        ps.setInt(5, groupe.getAnnee_creation());
+        ps.setString(6, groupe.getVille_origine());
+        ps.setString(7, groupe.getPays_origine());
+        ps.setString(8, groupe.getUrl_logo());
+        ps.setString(9, groupe.getSite_web());
+        ps.setString(10, groupe.getUrl_facebook());
+        ps.setString(11, groupe.getUrl_instagram());
+        ps.setString(12, groupe.getUrl_youtube());
+        ps.setString(13, groupe.getUrl_spotify());
+        ps.setString(14, groupe.getEmail_contact());
+        ps.setString(15, groupe.getTelephone_contact());
+        ps.setString(16, groupe.getUrl_fiche_technique());
+    }
+
+    // On ajoutera ensuite : delete
 }
