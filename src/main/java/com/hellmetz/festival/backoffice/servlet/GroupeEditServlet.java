@@ -20,7 +20,6 @@ public class GroupeEditServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String idParam = req.getParameter("id");
 
-        // Si un ID est fourni, on charge les données (Mode Modification)
         if (idParam != null && !idParam.trim().isEmpty()) {
             try {
                 int id = Integer.parseInt(idParam);
@@ -31,14 +30,11 @@ public class GroupeEditServlet extends HttpServlet {
                 e.printStackTrace();
             }
         } else {
-            // Mode Création
             req.setAttribute("pageTitle", "Nouveau groupe - HellMetz");
         }
 
-        // On indique au layout quelle page charger au centre
         req.setAttribute("contentPage", "groupes/edit.jsp");
 
-        // On transfère la requête au layout principal (qui s'occupera d'inclure le header, le menu et la page d'édition)
         this.getServletContext()
                 .getRequestDispatcher("/WEB-INF/backoffice/layout.jsp")
                 .forward(req, resp);
@@ -46,20 +42,13 @@ public class GroupeEditServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // 1. Récupération de l'ID (s'il existe, c'est un UPDATE, sinon c'est un INSERT)
         String idParam = req.getParameter("id");
 
-        // 2. Récupération de toutes les autres données du formulaire
         String nom = req.getParameter("nom");
         String description = req.getParameter("description");
-
-        // Gestion de la case à cocher "actif" (si non cochée, paramètre null)
         boolean actif = req.getParameter("actif") != null;
-
-        // Gestion sécurisée des champs numériques (au cas où ils seraient vides)
         int idConcert = parseInteger(req.getParameter("id_concert"), 0);
         int anneeCreation = parseInteger(req.getParameter("annee_creation"), 0);
-
         String villeOrigine = req.getParameter("ville_origine");
         String paysOrigine = req.getParameter("pays_origine");
         String urlLogo = req.getParameter("url_logo");
@@ -72,35 +61,29 @@ public class GroupeEditServlet extends HttpServlet {
         String telephoneContact = req.getParameter("telephone_contact");
         String urlFicheTechnique = req.getParameter("url_fiche_technique");
 
-        // 3. Création de l'objet Groupe
         Groupe groupe = new Groupe(
-                0, // L'ID sera mis à jour juste après si c'est une modification
+                0,
                 nom, description, actif, idConcert, anneeCreation,
                 villeOrigine, paysOrigine, urlLogo, siteWeb,
                 urlFacebook, urlInstagram, urlYoutube, urlSpotify,
                 emailContact, telephoneContact, urlFicheTechnique
         );
 
-        // 4. Appel au DAO selon le mode (Création ou Modification)
         if (idParam != null && !idParam.trim().isEmpty()) {
             try {
                 int id = Integer.parseInt(idParam);
-                groupe.setId(id); // On assigne le véritable ID
-                groupeDao.update(groupe); // Met à jour en base de données
+                groupe.setId(id);
+                groupeDao.update(groupe);
             } catch (NumberFormatException e) {
                 e.printStackTrace();
-         } else {
-            groupeDao.insert(groupe); // Insère un nouveau groupe en base
+            } // ✅ accolade fermante du catch au bon endroit
+        } else {  // ✅ else au bon niveau
+            groupeDao.insert(groupe);
         }
 
-        // 5. Redirection vers la liste des groupes (Pattern POST-Redirect-GET) pour éviter la double soumission du formulaire
-        // Note : Il faudra s'assurer que GroupeListServlet écoute bien sur "/backoffice/groupes/list" ou "/backoffice/groupes"
         resp.sendRedirect(req.getContextPath() + "/backoffice/groupes");
     }
 
-    /**
-     * Méthode utilitaire pour parser un String en int avec une valeur par défaut
-     */
     private int parseInteger(String value, int defaultValue) {
         if (value != null && !value.trim().isEmpty()) {
             try {
@@ -111,5 +94,4 @@ public class GroupeEditServlet extends HttpServlet {
         }
         return defaultValue;
     }
-
 }

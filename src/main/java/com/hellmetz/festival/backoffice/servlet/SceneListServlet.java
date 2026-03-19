@@ -1,7 +1,6 @@
 package com.hellmetz.festival.backoffice.servlet;
 
-import com.hellmetz.festival.backoffice.dao.GroupeDao;
-import com.hellmetz.festival.backoffice.model.Groupe;
+import com.hellmetz.festival.backoffice.dao.SceneDao; // ✅ bon import
 import com.hellmetz.festival.backoffice.model.Scene;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,18 +10,18 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/backoffice/scenes")
-public class SceneListServlet extends HttpServlet{
+public class SceneListServlet extends HttpServlet {
 
     private SceneDao sceneDao = new SceneDao();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-        throws ServletException, IOException {
+            throws ServletException, IOException {
 
-        List<Scene> scenes = SceneDao.findAll();
+        List<Scene> scenes = sceneDao.findAll(); // ✅ instance, pas classe
         req.setAttribute("scenes", scenes);
 
-        req.setAttribute("PageTitle", "HellMetz - Scenes");
+        req.setAttribute("pageTitle", "HellMetz - Scènes"); // ✅ minuscule
         req.setAttribute("activeMenu", "scenes");
         req.setAttribute("contentPage", "/WEB-INF/backoffice/scenes/list.jsp");
 

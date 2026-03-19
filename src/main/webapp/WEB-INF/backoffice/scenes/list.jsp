@@ -5,17 +5,17 @@
     <div class="hm-card-header">
         <div>
             <div class="hm-tag">Gestion</div>
-            <div class="hm-card-title">Scenes du HellMetz Festival</div>
+            <div class="hm-card-title">Scènes du HellMetz Festival</div>
         </div>
         <a href="${pageContext.request.contextPath}/backoffice/scenes/edit" class="hm-btn-primary">
             <span>＋</span>
-            <span>Nouveau scene</span>
+            <span>Nouvelle scène</span>
         </a>
     </div>
 
     <c:choose>
         <c:when test="${empty scenes}">
-            <p>Aucun scene enregistré pour le moment.</p>
+            <p>Aucune scène enregistrée pour le moment.</p>
         </c:when>
         <c:otherwise>
             <div class="table-responsive">
@@ -24,29 +24,31 @@
                     <tr>
                         <th>Nom</th>
                         <th>Description</th>
-                        <th>Année Création</th>
-                        <th>Pays</th>
-                        <th>Site web</th>
+                        <th>Capacité</th>
+                        <th>Type</th>          <%-- ✅ remplace "Année Création" --%>
+                        <th>Superficie (m²)</th> <%-- ✅ remplace "Pays" --%>
+                        <th>Plan technique</th>  <%-- ✅ remplace "Site web" --%>
                         <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="g" items="${scenes}">
+                    <c:forEach var="s" items="${scenes}"> <%-- ✅ var "s" au lieu de "g" --%>
                         <tr>
                             <td>
-                                <strong>${g.nom}</strong>
+                                <strong>${s.nom}</strong>
                             </td>
                             <td>
-                                <strong>${g.description}</strong>
+                                    ${s.description}
                             </td>
                             <td>
-                                <span class="hm-pill">${g.annee_creation}</span>
+                                <span class="hm-pill">${s.capacite}</span> <%-- ✅ --%>
                             </td>
-                            <td>${g.pays_origine}</td>
+                            <td>${s.type_scene}</td> <%-- ✅ --%>
+                            <td>${s.superficie}</td> <%-- ✅ --%>
                             <td>
-                                <c:if test="${not empty g.site_web}">
+                                <c:if test="${not empty s.url_plan_technique}"> <%-- ✅ --%>
                                     <a class="hm-link-site"
-                                       href="${g.site_web}"
+                                       href="${s.url_plan_technique}"
                                        target="_blank" rel="noopener noreferrer">
                                         ouvrir
                                     </a>
@@ -54,13 +56,13 @@
                             </td>
                             <td>
                                 <a class="hm-link-site"
-                                   href="${pageContext.request.contextPath}/backoffice/scenes/edit?id=${g.id}">
+                                   href="${pageContext.request.contextPath}/backoffice/scenes/edit?id=${s.id}">
                                     ✏️ éditer
                                 </a>
                                 &nbsp;|&nbsp;
                                 <a class="hm-link-site"
-                                   href="${pageContext.request.contextPath}/backoffice/scenes/delete?id=${g.id}"
-                                   onclick="return confirm('Supprimer ce scene ?');">
+                                   href="${pageContext.request.contextPath}/backoffice/scenes/delete?id=${s.id}"
+                                   onclick="return confirm('Supprimer cette scène ?');">
                                     🗑️ supprimer
                                 </a>
                             </td>
