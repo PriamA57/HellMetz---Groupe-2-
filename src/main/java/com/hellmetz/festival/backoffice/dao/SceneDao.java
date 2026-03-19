@@ -47,7 +47,7 @@ public static class SceneDao {
     }
 }
 
-public void insert(Scene scene) {
+public void insert(String scene) {
     String sql = "INSERT INTO groupe (nom_scene, description, capacite, actif, type_scene, superficie_m2, url_plan_technique) VALUES (?, ?, ?, ?, ?, ?)";
 
     try (Connection cn = ConnectionFactory.getConnection();
