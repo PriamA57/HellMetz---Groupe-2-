@@ -22,7 +22,7 @@ public class ConcertDao {
 
             while (rs.next()) {
                 Concert concert = mapResultSet(rs);
-                result.add(concert);
+                result.add(concert); //test de tous tes mort
             }
 
         } catch (SQLException e) {
