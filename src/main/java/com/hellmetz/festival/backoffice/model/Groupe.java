@@ -16,7 +16,6 @@ public class Groupe {
     private String nom;
     private String description;
     private Boolean actif;
-    private int id_concert;
     private int annee_creation;
     private String url_logo;
     private String site_web;
@@ -50,10 +49,6 @@ public class Groupe {
 
     public Boolean getActif() {
         return actif;
-    }
-
-    public int getId_concert() {
-        return id_concert;
     }
 
     public int getAnnee_creation() {
@@ -120,10 +115,6 @@ public class Groupe {
         this.actif = actif;
     }
 
-    public void setId_concert(int id_concert) {
-        this.id_concert = id_concert;
-    }
-
     public void setAnnee_creation(int annee_creation) {
         this.annee_creation = annee_creation;
     }
@@ -177,7 +168,6 @@ public class Groupe {
         this.nom = "Undefined";
         this.description = "Undefined";
         this.actif = false;
-        this.id_concert = 0;
         this.annee_creation = 2026;
         this.url_logo = "";
         this.site_web = "";
@@ -192,12 +182,11 @@ public class Groupe {
         this.pays_origine = "France";
     }
 
-    public Groupe(int id, String nom_groupe, String description, Boolean actif, int id_concert, int annee_creation, String ville_origine, String pays_origine, String url_logo, String site_web, String url_facebook, String url_instagram, String url_youtube, String url_spotify, String email_contact, String telephone_contact, String url_fiche_technique){
+    public Groupe(int id, String nom_groupe, String description, Boolean actif, int annee_creation, String ville_origine, String pays_origine, String url_logo, String site_web, String url_facebook, String url_instagram, String url_youtube, String url_spotify, String email_contact, String telephone_contact, String url_fiche_technique){
         this.id = id;
         this.nom = nom_groupe;
         this.description = description;
         this.actif = actif;
-        this.id_concert = id_concert;
         this.annee_creation = annee_creation;
         this.url_logo = url_logo;
         this.site_web = site_web;

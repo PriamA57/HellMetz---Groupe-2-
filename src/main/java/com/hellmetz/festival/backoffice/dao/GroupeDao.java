@@ -11,7 +11,7 @@ public class GroupeDao {
     public List<Groupe> findAll() {
         List<Groupe> result = new ArrayList<>();
 
-        String sql = "select id_groupe, nom_groupe, description, actif, id_concert, annee_creation, ville_origine, pays_origine, url_logo, site_web, url_facebook, url_instagram, url_youtube, url_spotify, email_contact, telephone_contact, url_fiche_technique from groupe ORDER BY nom_groupe";
+        String sql = "select id_groupe, nom_groupe, description, actif, annee_creation, ville_origine, pays_origine, url_logo, site_web, url_facebook, url_instagram, url_youtube, url_spotify, email_contact, telephone_contact, url_fiche_technique from groupe ORDER BY nom_groupe";
 
         try (Connection cn = ConnectionFactory.getConnection();
              PreparedStatement ps = cn.prepareStatement(sql);
@@ -19,8 +19,7 @@ public class GroupeDao {
 
             while (rs.next()) {
                 Groupe groupe = new Groupe(rs.getInt("id_groupe"), rs.getString("nom_groupe"),
-                        rs.getString("description"), rs.getBoolean("actif"),
-                        rs.getInt("id_concert"), rs.getInt("annee_creation"),
+                        rs.getString("description"), rs.getBoolean("actif"), rs.getInt("annee_creation"),
                         rs.getString("ville_origine"), rs.getString("pays_origine"),
                         rs.getString("url_logo"), rs.getString("site_web"),
                         rs.getString("url_facebook"), rs.getString("url_instagram"),
@@ -51,7 +50,7 @@ public class GroupeDao {
                 if (rs.next()) {
                     Groupe groupe = new Groupe(rs.getInt("id_groupe"), rs.getString("nom_groupe"),
                             rs.getString("description"), rs.getBoolean("actif"),
-                            rs.getInt("id_concert"), rs.getInt("annee_creation"),
+                            rs.getInt("annee_creation"),
                             rs.getString("ville_origine"), rs.getString("pays_origine"),
                             rs.getString("url_logo"), rs.getString("site_web"),
                             rs.getString("url_facebook"), rs.getString("url_instagram"),
@@ -107,19 +106,18 @@ public class GroupeDao {
         ps.setString(1, groupe.getNom());
         ps.setString(2, groupe.getDescription());
         ps.setBoolean(3, groupe.getActif());
-        ps.setInt(4, groupe.getId_concert());
-        ps.setInt(5, groupe.getAnnee_creation());
-        ps.setString(6, groupe.getVille_origine());
-        ps.setString(7, groupe.getPays_origine());
-        ps.setString(8, groupe.getUrl_logo());
-        ps.setString(9, groupe.getSite_web());
-        ps.setString(10, groupe.getUrl_facebook());
-        ps.setString(11, groupe.getUrl_instagram());
-        ps.setString(12, groupe.getUrl_youtube());
-        ps.setString(13, groupe.getUrl_spotify());
-        ps.setString(14, groupe.getEmail_contact());
-        ps.setString(15, groupe.getTelephone_contact());
-        ps.setString(16, groupe.getUrl_fiche_technique());
+        ps.setInt(4, groupe.getAnnee_creation());
+        ps.setString(5, groupe.getVille_origine());
+        ps.setString(6, groupe.getPays_origine());
+        ps.setString(7, groupe.getUrl_logo());
+        ps.setString(8, groupe.getSite_web());
+        ps.setString(9, groupe.getUrl_facebook());
+        ps.setString(10, groupe.getUrl_instagram());
+        ps.setString(11, groupe.getUrl_youtube());
+        ps.setString(12, groupe.getUrl_spotify());
+        ps.setString(13, groupe.getEmail_contact());
+        ps.setString(14, groupe.getTelephone_contact());
+        ps.setString(15, groupe.getUrl_fiche_technique());
     }
 
     // On ajoutera ensuite : delete

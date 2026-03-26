@@ -63,7 +63,7 @@ public class GroupeEditServlet extends HttpServlet {
 
         Groupe groupe = new Groupe(
                 0,
-                nom, description, actif, idConcert, anneeCreation,
+                nom, description, actif, anneeCreation,
                 villeOrigine, paysOrigine, urlLogo, siteWeb,
                 urlFacebook, urlInstagram, urlYoutube, urlSpotify,
                 emailContact, telephoneContact, urlFicheTechnique
