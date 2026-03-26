@@ -18,9 +18,10 @@
             <span>Groupes</span>
         </a>
 
-        <a class="disabled">
+        <a href="${pageContext.request.contextPath}/backoffice/concert"
+           class="<c:if test='${activeMenu eq "concert"}'>active</c:if>">
             <span>🎵</span>
-            <span>Concerts (à venir)</span>
+            <span>Concert</span>
         </a>
 
         <a class="disabled">
@@ -37,5 +38,12 @@
             <span>📍</span>
             <span>Points d’intérêt (à venir)</span>
         </a>
+
+        <a href="${pageContext.request.contextPath}/backoffice/scenes"
+           class="<c:if test='${activeMenu eq "scenes"}'>active</c:if>">
+            <span>🎬</span>
+            <span>Scenes</span>
+        </a>
+
     </nav>
 </div>
