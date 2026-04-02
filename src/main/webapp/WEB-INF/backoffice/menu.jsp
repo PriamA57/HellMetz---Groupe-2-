@@ -24,6 +24,12 @@
             <span>Concert</span>
         </a>
 
+        <a href="${pageContext.request.contextPath}/backoffice/artiste"
+           class="<c:if test='${activeMenu eq "groupes"}'>active</c:if>">
+            <span>🎙️</span>
+            <span>Artistes</span>
+        </a>
+
         <a class="disabled">
             <span>📦</span>
             <span>Logistique & Matériel (à venir)</span>

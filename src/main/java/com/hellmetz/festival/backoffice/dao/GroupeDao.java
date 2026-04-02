@@ -144,5 +144,25 @@ public class GroupeDao {
         ps.setString(16, groupe.getUrl_fiche_technique());
     }
 
-    // On ajoutera ensuite : delete
+    public Boolean delete(int id) {
+        String sql = "DELETE FROM groupe WHERE id_groupe = ?";
+        int resultat = 0;
+
+        try (Connection cn = ConnectionFactory.getConnection();
+             PreparedStatement ps = cn.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+
+            resultat = ps.executeUpdate();
+            if (resultat == 1){
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }
