@@ -7,7 +7,7 @@ public class Utilisateur {
     private String prenom;
     private String email;
 
-    // Constructeur Utilisateur
+    // Constructeur Utilisateur !!
     public Utilisateur(Long idUtilisateur, String identifiant, String nom, String prenom, String email) {
         this.idUtilisateur = idUtilisateur;
         this.identifiant = identifiant;
