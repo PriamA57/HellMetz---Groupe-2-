@@ -1,5 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="que je veux" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 11.0.18" ALTERNATIVE_JRE_ENABLED="false">
+    <option name="OPEN_IN_BROWSER_URL" value="https://localhost:8080/hellmetz_war/" />
     <option name="UPDATING_POLICY" value="restart-server" />
     <deployment>
       <artifact name="hellmetz:war">
