@@ -9,9 +9,11 @@ public class Utilisateur {
     private boolean actif;
     private Long date_creation;
     private Long derniere_connexion;
+    private String code_role;
+    private String code_permission;
 
     // Constructeur Utilisateur !!
-    public Utilisateur(Long idUtilisateur, String identifiant, String nom, String prenom, String email, boolean actif, Long date_creation, Long derniere_connexion) {
+    public Utilisateur(Long idUtilisateur, String identifiant, String nom, String prenom, String email, boolean actif, Long date_creation, Long derniere_connexion, String code_role, String code_permission) {
         this.idUtilisateur = idUtilisateur;
         this.identifiant = identifiant;
         this.nom = nom;
@@ -20,6 +22,8 @@ public class Utilisateur {
         this.actif = actif;
         this.date_creation = date_creation;
         this.derniere_connexion = derniere_connexion;
+        this.code_role = code_role;
+        this.code_permission = code_permission;
     }
 
     // Getters et Setters
@@ -46,4 +50,10 @@ public class Utilisateur {
 
     public Long getDerniere_connexion() { return derniere_connexion; }
     public void setDerniere_connexion(Long derniere_connexion) { this.derniere_connexion = derniere_connexion; }
+
+    public String getCode_Role() { return code_role; }
+    public void setCode_role(String code_role) { this.code_role = code_role; }
+
+    public String getCode_permission() { return code_permission; }
+    public void setCode_permission(String code_permission) { this.code_permission = code_permission; }
 }
