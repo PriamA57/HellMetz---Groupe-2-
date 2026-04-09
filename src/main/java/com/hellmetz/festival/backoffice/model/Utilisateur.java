@@ -11,7 +11,7 @@ public class Utilisateur {
     private Long derniere_connexion;
 
     // Constructeur Utilisateur !!
-    public Utilisateur(Long idUtilisateur, String identifiant, String nom, String prenom, String email, boolean actif, Long date_creation, Long derniere_connexion) {
+    public Utilisateur() {
         this.idUtilisateur = idUtilisateur;
         this.identifiant = identifiant;
         this.nom = nom;
@@ -46,4 +46,8 @@ public class Utilisateur {
 
     public Long getDerniere_connexion() { return derniere_connexion; }
     public void setDerniere_connexion(Long derniere_connexion) { this.derniere_connexion = derniere_connexion; }
+
+    public void addRole(String codeRole) {
+    }
+    public void addPermission(String codePermission) {}
 }
