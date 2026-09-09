@@ -25,10 +25,16 @@
         </a>
 
         <a href="${pageContext.request.contextPath}/backoffice/artiste"
-           class="<c:if test='${activeMenu eq "groupes"}'>active</c:if>">
+           class="<c:if test='${activeMenu eq "artiste"}'>active</c:if>">
             <span>🎙️</span>
             <span>Artistes</span>
         </a>
+
+        <a href="${pageContext.request.contextPath}/backoffice/scenes"
+                   class="<c:if test='${activeMenu eq "scenes"}'>active</c:if>">
+                    <span>🎬</span>
+                    <span>Scenes</span>
+                </a>
 
         <a class="disabled">
             <span>📦</span>
@@ -45,11 +51,7 @@
             <span>Points d’intérêt (à venir)</span>
         </a>
 
-        <a href="${pageContext.request.contextPath}/backoffice/scenes"
-           class="<c:if test='${activeMenu eq "scenes"}'>active</c:if>">
-            <span>🎬</span>
-            <span>Scenes</span>
-        </a>
+
 
     </nav>
 </div>
